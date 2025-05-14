@@ -1,0 +1,183 @@
+
+=========================
+INTERFEJSY (interface)
+=========================
+
+Definicja interfejsu i implementacja:
+
+```java
+public interface Vehicle {
+    void start();
+    void stop();
+}
+```
+
+```java
+public class Bike implements Vehicle {
+    public void start() {
+        System.out.println("Ruszamy!");
+    }
+    public void stop() {
+        System.out.println("Zatrzymujemy się.");
+    }
+}
+```
+
+Interfejs może mieć też metody `default` i `static`:
+
+```java
+public interface MusicPlayer {
+    default void play() {
+        System.out.println("Odtwarzanie muzyki...");
+    }
+
+    static void info() {
+        System.out.println("To jest interfejs odtwarzacza.");
+    }
+}
+```
+
+=========================
+WYJĄTKI (try-catch, throw, throws)
+=========================
+
+Obsługa wyjątku:
+
+```java
+try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Błąd: " + e.getMessage());
+}
+```
+
+Rzucanie wyjątku:
+
+```java
+public void divide(int a, int b) throws ArithmeticException {
+    if (b == 0) {
+        throw new ArithmeticException("Nie dziel przez zero!");
+    }
+    System.out.println(a / b);
+}
+```
+
+Własny wyjątek:
+
+```java
+public class MyException extends Exception {
+    public MyException(String msg) {
+        super(msg);
+    }
+}
+```
+
+=========================
+ENUMY (enum)
+=========================
+
+Prosty enum:
+
+```java
+public enum Day {
+    MONDAY, TUESDAY, WEDNESDAY;
+}
+```
+
+Enum z metodami:
+
+```java
+public enum Level {
+    EASY(1), MEDIUM(2), HARD(3);
+
+    private int value;
+
+    Level(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
+```
+
+=========================
+POLIMORFIZM I RZUTOWANIE
+=========================
+
+Polimorfizm:
+
+```java
+class Animal {
+    public void sound() {
+        System.out.println("Zwierzę wydaje dźwięk");
+    }
+}
+
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("Hau hau");
+    }
+}
+```
+
+```java
+Animal myDog = new Dog();
+myDog.sound(); // "Hau hau"
+```
+
+Rzutowanie:
+
+```java
+if (myDog instanceof Dog) {
+    ((Dog)myDog).sound();
+}
+```
+
+=========================
+SŁOWA KLUCZOWE: this, super, final, static
+=========================
+
+```java
+public class Example {
+    private static int counter = 0;
+    private final String name;
+
+    public Example(String name) {
+        this.name = name;
+    }
+
+    public void show() {
+        System.out.println("Nazywam się " + this.name);
+    }
+
+    public static void increment() {
+        counter++;
+    }
+}
+```
+
+```java
+public class SubExample extends Example {
+    public SubExample(String name) {
+        super(name); // wywołanie konstruktora nadrzędnego
+    }
+}
+```
+
+=========================
+PAKIETY I IMPORTY
+=========================
+
+```java
+package mypackage;
+
+import java.util.Scanner;
+
+public class MyClass {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
+}
+```
